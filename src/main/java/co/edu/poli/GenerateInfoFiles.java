@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * GenerateInfoFiles class
+ * This class generates the files with the dummy data for the tests
+ *
+ * @version 1.0 22 Mar 2024
+ */
 public class GenerateInfoFiles {
     public static void main(String[] args) {
         List<SalesMen> salesMens = createSalesManInfoFile(5);
@@ -23,6 +29,12 @@ public class GenerateInfoFiles {
         }
     }
 
+    /**
+     * Create a sales file
+     * @param salesMen SalesMen object
+     * @param Products List of products
+     * @param randomSalesCount Random sales count
+     */
     private static void createSalesMenFile(SalesMen salesMen, List<Product> Products, int randomSalesCount) {
         if (salesMen == null || Products == null || randomSalesCount <= 0) return;
 
@@ -51,6 +63,11 @@ public class GenerateInfoFiles {
         }
     }
 
+    /**
+     * Create a products file
+     * @param productsCount Products count
+     * @return List of products
+     */
     private static List<Product> createProductsFile(int productsCount) {
         if (productsCount <= 0) return null;
 
@@ -89,6 +106,11 @@ public class GenerateInfoFiles {
         return products;
     }
 
+    /**
+     * Create a salesman info file
+     * @param salesmanCount
+     * @return
+     */
     private static List<SalesMen> createSalesManInfoFile(int salesmanCount) {
         if (salesmanCount <= 0) return null;
 
@@ -129,6 +151,7 @@ public class GenerateInfoFiles {
         return salesMens;
     }
 
+    /** Get products from file */
     private static List<String> getProducts() {
         String filePath = "src/files/test/input/Products.csv";
 
@@ -140,6 +163,7 @@ public class GenerateInfoFiles {
         }
     }
 
+    /** Get names from file */
     private static List<String> getNames() {
         String filePath = "src/files/test/input/Names.csv";
 

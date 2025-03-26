@@ -23,10 +23,18 @@ public class Product {
         this.price = price;
     }
 
+    /**
+     * Get the product id
+     * @return Product id
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Get the product name
+     * @return Product name
+     */
     @Override
     public String toString() {
         return Long.toString(id) + ';' + name + ';' + price;
