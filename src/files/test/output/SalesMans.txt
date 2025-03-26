@@ -1,5 +1,0 @@
-CC;633926;Gabriela;Betancor
-CC;789275;Andrea;Rosell
-CC;847096;Victoria;Agudo
-CC;924902;Tamara;Benitez
-CC;570327;Jessica;Ortiz
