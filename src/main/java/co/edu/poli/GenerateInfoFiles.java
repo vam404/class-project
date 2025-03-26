@@ -26,7 +26,7 @@ public class GenerateInfoFiles {
     private static void createSalesMenFile(SalesMen salesMen, List<Product> Products, int randomSalesCount) {
         if (salesMen == null || Products == null || randomSalesCount <= 0) return;
 
-        String filePath = String.format("src/files/test/output/Sales%s.txt", salesMen.getDocumentNumber());
+        String filePath = String.format("src/files/test/output/Sales_%s.txt", salesMen.getDocumentNumber());
         Path path = Paths.get(filePath);
 
         try {
