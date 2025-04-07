@@ -7,8 +7,11 @@ package co.edu.poli.models;
  * @version 1.0 22 Mar 2024
  */
 public class Product {
+    // ID of the product
     private long id;
+    // Name of the product
     private String name;
+    // Price of the product
     private double price;
 
     /**
@@ -32,8 +35,8 @@ public class Product {
     }
 
     /**
-     * Get the product name
-     * @return Product name
+     * Get the product info
+     * @return Product info
      */
     @Override
     public String toString() {
