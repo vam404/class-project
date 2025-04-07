@@ -21,9 +21,12 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class GenerateInfoFiles {
     public static void main(String[] args) {
+        // Create a salesmen info file and return the list of salesmen
         List<SalesMen> salesMens = createSalesManInfoFile(5);
+        // Create a products file and return the list of products
         List<Product> products = createProductsFile(5);
 
+        // Iterate over the list of salesmen and create a sales file for each salesman
         for (SalesMen salesMen : salesMens) {
             createSalesMenFile(salesMen, products, 15);
         }
@@ -36,12 +39,16 @@ public class GenerateInfoFiles {
      * @param randomSalesCount Random sales count
      */
     private static void createSalesMenFile(SalesMen salesMen, List<Product> Products, int randomSalesCount) {
+        // Check if the salesmen and products are not null and the random sales count is greater than 0
         if (salesMen == null || Products == null || randomSalesCount <= 0) return;
 
+        // Create a file path for the salesmen file
         String filePath = String.format("src/files/test/output/Sales_%s.txt", salesMen.getDocumentNumber());
+        // Create a path object
         Path path = Paths.get(filePath);
 
         try {
+            // Check if the file exists, if not create it
             if (!Files.exists(path)) {
                 Files.createFile(path);
             }
@@ -50,12 +57,18 @@ public class GenerateInfoFiles {
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            // Write the header
             bw.write(String.format("%s;%s", salesMen.getDocumentType(), salesMen.getDocumentNumber()));
+            // Write a new line
             bw.newLine();
 
+            // Write the salesmen sales
             for (int x = 0; x < ThreadLocalRandom.current().nextInt(1, 15); x++) {
+                // Get a random product from the list of products
                 Product product = Products.get(ThreadLocalRandom.current().nextInt(0, Products.size()));
+                // Write the product id and a random quantity
                 bw.write(String.format("%s;%s", product.getId(), ThreadLocalRandom.current().nextInt(1, 100)));
+                // Write a new line
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -69,24 +82,35 @@ public class GenerateInfoFiles {
      * @return List of products
      */
     private static List<Product> createProductsFile(int productsCount) {
+        // Check if the products count is greater than 0
         if (productsCount <= 0) return null;
 
+        // Get the products from the file
         List<String> productsNames = getProducts();
+        // Check if the products names are not null
         if (productsNames == null) return null;
 
+        // Create a list of products
         List<Product> products = new ArrayList<>();
 
+        // Create a product for each product name
         for (int i = 0; i < productsCount; i++) {
+            // Get a random product name from the list of products
             String name = productsNames.get(i);
+            // Generate a random product price
             double price = ThreadLocalRandom.current().nextInt(1000, 100000);
 
+            // Create a product object and add it to the list of products
             products.add(new Product(i, name, price));
         }
 
+        // Create a file path for the products file
         String filePath = "src/files/test/output/Products.txt";
+        // Create a path object
         Path path = Paths.get(filePath);
 
         try {
+            // Check if the file exists, if not create it
             if (!Files.exists(path)) {
                 Files.createFile(path);
             }
@@ -94,44 +118,61 @@ public class GenerateInfoFiles {
             e.printStackTrace();
         }
 
+        // Write the products to the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            // Iterate over the list of products and write each product to the file
             for (Product product : products) {
+                // Write the product id, name and price
                 bw.write(product.toString());
+                // Write a new line
                 bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Return the list of products
         return products;
     }
 
     /**
      * Create a salesman info file
-     * @param salesmanCount
-     * @return
+     * @param salesmanCount Number of salesmen to generate for the info file
+     * @return List of salesmen
      */
     private static List<SalesMen> createSalesManInfoFile(int salesmanCount) {
+        // Check if the salesman count is greater than 0
         if (salesmanCount <= 0) return null;
 
+        // Get the names from the file
         List<String> names = getNames();
+        // Check if the names are not null
         if (names == null) return null;
 
+        // Create a list of salesmen
         List<SalesMen> salesMens = new ArrayList<>();
 
+        // Create a salesman for each name
         for (int i = 0; i < salesmanCount; i++) {
+            // Get a random name from the list of names
             String name = names.get(i);
+            // Generate a random id
             long id = (ThreadLocalRandom.current().nextInt(500000, 1000000));
 
+            // Split the name into first and last name
             String[] nameSplit = name.split(" ");
 
+            // Create a salesmen object and add it to the list of salesmen
             salesMens.add(new SalesMen(Long.toString(id), "CC", nameSplit[0], nameSplit[1]));
         }
 
+        // Create a file path for the salesmen file
         String filePath = "src/files/test/output/SalesMans.txt";
+        // Create a path object
         Path path = Paths.get(filePath);
 
         try {
+            // Check if the file exists, if not create it
             if (!Files.exists(path)) {
                 Files.createFile(path);
             }
@@ -139,23 +180,30 @@ public class GenerateInfoFiles {
             e.printStackTrace();
         }
 
+        // Write the salesmen to the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            // Iterate over the list of salesmen and write each salesman to the file
             for (SalesMen salesMen : salesMens) {
+                // Write the salesman id, name and last name
                 bw.write(salesMen.toString());
+                // Write a new line
                 bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Return the list of salesmen
         return salesMens;
     }
 
     /** Get products from file */
     private static List<String> getProducts() {
+        // File path for the products file
         String filePath = "src/files/test/input/Products.csv";
 
         try {
+            // Read all lines from the file and return them as a list
             return Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
             e.printStackTrace();
@@ -165,9 +213,11 @@ public class GenerateInfoFiles {
 
     /** Get names from file */
     private static List<String> getNames() {
+        // File path for the names file
         String filePath = "src/files/test/input/Names.csv";
 
         try {
+            // Read all lines from the file and return them as a list
             return Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
             e.printStackTrace();
