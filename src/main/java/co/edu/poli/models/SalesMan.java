@@ -1,12 +1,12 @@
 package co.edu.poli.models;
 
 /**
- * SalesMen class
+ * SalesMan class
  * This class represents a salesmen
  *
- * @version 1.0 22 Mar 2024
+ * @version 1.0 22 Mar 2025
  */
-public class SalesMen {
+public class SalesMan {
     // Document number of the salesmen
     private String documentNumber;
     // Document type of the salesmen
@@ -23,7 +23,7 @@ public class SalesMen {
      * @param names Salesmen names
      * @param surnames Salesmen surnames
      */
-    public SalesMen(String documentNumber, String documentType, String names, String surnames) {
+    public SalesMan(String documentNumber, String documentType, String names, String surnames) {
         this.documentNumber = documentNumber;
         this.documentType = documentType;
         this.names = names;

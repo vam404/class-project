@@ -4,7 +4,7 @@ package co.edu.poli.models;
  * SalesReport class
  * This class represents a sales report of a product
  *
- * @version 1.0 06 Apr 2024
+ * @version 1.0 06 Apr 2025
  */
 public class SalesReport extends Product {
     // Total sales of the product

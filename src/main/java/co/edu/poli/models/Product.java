@@ -4,7 +4,7 @@ package co.edu.poli.models;
  * Product class
  * This class represents a product
  *
- * @version 1.0 22 Mar 2024
+ * @version 1.0 22 Mar 2025
  */
 public class Product {
     // ID of the product

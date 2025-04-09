@@ -1,7 +1,7 @@
 package co.edu.poli;
 
 import co.edu.poli.models.Product;
-import co.edu.poli.models.SalesMen;
+import co.edu.poli.models.SalesMan;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -17,33 +17,33 @@ import java.util.concurrent.ThreadLocalRandom;
  * GenerateInfoFiles class
  * This class generates the files with the dummy data for the tests
  *
- * @version 1.0 22 Mar 2024
+ * @version 1.0 22 Mar 2025
  */
 public class GenerateInfoFiles {
     public static void main(String[] args) {
         // Create a salesmen info file and return the list of salesmen
-        List<SalesMen> salesMens = createSalesManInfoFile(5);
+        List<SalesMan> salesMEN = createSalesManInfoFile(5);
         // Create a products file and return the list of products
         List<Product> products = createProductsFile(5);
 
         // Iterate over the list of salesmen and create a sales file for each salesman
-        for (SalesMen salesMen : salesMens) {
-            createSalesMenFile(salesMen, products, 15);
+        for (SalesMan salesMan : salesMEN) {
+            createSalesMenFile(salesMan, products, 15);
         }
     }
 
     /**
      * Create a sales file
-     * @param salesMen SalesMen object
+     * @param salesMan SalesMan object
      * @param Products List of products
      * @param randomSalesCount Random sales count
      */
-    private static void createSalesMenFile(SalesMen salesMen, List<Product> Products, int randomSalesCount) {
+    private static void createSalesMenFile(SalesMan salesMan, List<Product> Products, int randomSalesCount) {
         // Check if the salesmen and products are not null and the random sales count is greater than 0
-        if (salesMen == null || Products == null || randomSalesCount <= 0) return;
+        if (salesMan == null || Products == null || randomSalesCount <= 0) return;
 
         // Create a file path for the salesmen file
-        String filePath = String.format("src/files/test/output/Sales_%s.txt", salesMen.getDocumentNumber());
+        String filePath = String.format("src/files/test/output/Sales_%s.txt", salesMan.getDocumentNumber());
         // Create a path object
         Path path = Paths.get(filePath);
 
@@ -58,7 +58,7 @@ public class GenerateInfoFiles {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             // Write the header
-            bw.write(String.format("%s;%s", salesMen.getDocumentType(), salesMen.getDocumentNumber()));
+            bw.write(String.format("%s;%s", salesMan.getDocumentType(), salesMan.getDocumentNumber()));
             // Write a new line
             bw.newLine();
 
@@ -105,7 +105,7 @@ public class GenerateInfoFiles {
         }
 
         // Create a file path for the products file
-        String filePath = "src/files/test/output/Products.txt";
+        String filePath = "src/files/test/output/products.txt";
         // Create a path object
         Path path = Paths.get(filePath);
 
@@ -140,7 +140,7 @@ public class GenerateInfoFiles {
      * @param salesmanCount Number of salesmen to generate for the info file
      * @return List of salesmen
      */
-    private static List<SalesMen> createSalesManInfoFile(int salesmanCount) {
+    private static List<SalesMan> createSalesManInfoFile(int salesmanCount) {
         // Check if the salesman count is greater than 0
         if (salesmanCount <= 0) return null;
 
@@ -150,7 +150,7 @@ public class GenerateInfoFiles {
         if (names == null) return null;
 
         // Create a list of salesmen
-        List<SalesMen> salesMens = new ArrayList<>();
+        List<SalesMan> salesMEN = new ArrayList<>();
 
         // Create a salesman for each name
         for (int i = 0; i < salesmanCount; i++) {
@@ -163,11 +163,11 @@ public class GenerateInfoFiles {
             String[] nameSplit = name.split(" ");
 
             // Create a salesmen object and add it to the list of salesmen
-            salesMens.add(new SalesMen(Long.toString(id), "CC", nameSplit[0], nameSplit[1]));
+            salesMEN.add(new SalesMan(Long.toString(id), "CC", nameSplit[0], nameSplit[1]));
         }
 
         // Create a file path for the salesmen file
-        String filePath = "src/files/test/output/SalesMans.txt";
+        String filePath = "src/files/test/output/salesMen.txt";
         // Create a path object
         Path path = Paths.get(filePath);
 
@@ -183,9 +183,9 @@ public class GenerateInfoFiles {
         // Write the salesmen to the file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
             // Iterate over the list of salesmen and write each salesman to the file
-            for (SalesMen salesMen : salesMens) {
+            for (SalesMan salesMan : salesMEN) {
                 // Write the salesman id, name and last name
-                bw.write(salesMen.toString());
+                bw.write(salesMan.toString());
                 // Write a new line
                 bw.newLine();
             }
@@ -194,7 +194,7 @@ public class GenerateInfoFiles {
         }
 
         // Return the list of salesmen
-        return salesMens;
+        return salesMEN;
     }
 
     /** Get products from file */

@@ -4,9 +4,9 @@ package co.edu.poli.models;
  * SalesMenReport class
  * This class represents a salesmen report
  *
- * @version 1.0 06 Apr 2024
+ * @version 1.0 06 Apr 2025
  */
-public class SalesMenReport extends SalesMen {
+public class SalesMenReport extends SalesMan {
     // Document number of the salesmen
     private double totalSales;
 
